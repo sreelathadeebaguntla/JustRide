@@ -18,8 +18,6 @@ import com.amazonaws.services.dynamodbv2.model.ResourceInUseException;
 import com.car.rental.justride.car.Car;
 
 @Configuration
-//@EnableDynamoDBRepositories
-//  (basePackages = "com.baeldung.spring.data.dynamodb.repositories")
 @EnableDynamoDBRepositories(basePackages = "com.car.rental.justride.repository")
 public class DynamoDBConfig {
 
