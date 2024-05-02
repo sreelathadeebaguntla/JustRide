@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.socialsignin.spring.data.dynamodb.repository.EnableScan;
 import org.springframework.data.repository.CrudRepository;
 
-import com.car.rental.justride.car.Car;
+import com.car.rental.justride.modal.Car;
 
 @EnableScan
 public interface CarRepository extends CrudRepository<Car, String> {
