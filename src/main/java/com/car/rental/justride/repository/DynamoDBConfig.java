@@ -15,11 +15,9 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig;
 import com.amazonaws.services.dynamodbv2.model.CreateTableRequest;
 import com.amazonaws.services.dynamodbv2.model.ProvisionedThroughput;
 import com.amazonaws.services.dynamodbv2.model.ResourceInUseException;
-import com.car.rental.justride.car.Car;
+import com.car.rental.justride.modal.Car;
 
 @Configuration
-//@EnableDynamoDBRepositories
-//  (basePackages = "com.baeldung.spring.data.dynamodb.repositories")
 @EnableDynamoDBRepositories(basePackages = "com.car.rental.justride.repository")
 public class DynamoDBConfig {
 

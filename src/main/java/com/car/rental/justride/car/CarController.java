@@ -1,44 +1,45 @@
 package com.car.rental.justride.car;
 
-import java.util.List;
+import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
+import com.car.rental.justride.modal.Car;
+import com.car.rental.justride.modal.CarCreatedResponse;
+import com.car.rental.justride.modal.CarResponse;
+import com.car.rental.justride.modal.CarsResponse;
+import com.car.rental.justride.service.CarService;
 
 @RestController
 @RequestMapping("/justride")
 public class CarController {
 
-    @Autowired
-    private AmazonDynamoDB amazonDynamoDB;
+	@Autowired
+	private CarService carService;
 
-    @GetMapping("/cars")
-    public List<Car> getAllCars() {
-        DynamoDBMapper dynamoDBMapper = new DynamoDBMapper(amazonDynamoDB);
-        List<Car> cars = dynamoDBMapper.scan(Car.class, new DynamoDBScanExpression());
-        return cars;
-    }
-    
-    @GetMapping("/cars/{id}")
-    public Car getCarById(@PathVariable Integer id) {
-        DynamoDBMapper dynamoDBMapper = new DynamoDBMapper(amazonDynamoDB);
-        Car car = dynamoDBMapper.load(Car.class, id);
-        return car;
-    }
-    
-    @PostMapping("/cars")
-    public Car addCar(@RequestBody Car car) {
-        DynamoDBMapper dynamoDBMapper = new DynamoDBMapper(amazonDynamoDB);
-        dynamoDBMapper.save(car);
-        return car;
-    }
+	@GetMapping("/cars")
+	public ResponseEntity<CarsResponse> getAllCars() {
+		return ResponseEntity.ok(carService.getCars());
+	}
+
+	@GetMapping("/cars/{id}")
+	public ResponseEntity<CarResponse> getCarById(@PathVariable String id) {
+		return ResponseEntity.ok(carService.getCarById(id));
+	}
+
+	@PostMapping("/cars")
+	public ResponseEntity<CarCreatedResponse> addCar(@RequestBody Car car) {
+		CarCreatedResponse carReponse = carService.addCar(car);
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+				.buildAndExpand(carReponse.getCreatedCar().getId()).toUri();
+		return ResponseEntity.created(location).build();
+	}
 }
