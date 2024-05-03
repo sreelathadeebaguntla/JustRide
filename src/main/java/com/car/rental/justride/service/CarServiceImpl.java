@@ -3,6 +3,7 @@ package com.car.rental.justride.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
@@ -12,6 +13,7 @@ import com.car.rental.justride.modal.CarCreatedResponse;
 import com.car.rental.justride.modal.CarResponse;
 import com.car.rental.justride.modal.CarsResponse;
 
+@Component
 public class CarServiceImpl implements CarService {
 
 	@Autowired
@@ -27,7 +29,7 @@ public class CarServiceImpl implements CarService {
 	}
 
 	@Override
-	public CarResponse getCarById(int id) {
+	public CarResponse getCarById(String id) {
 		DynamoDBMapper dynamoDBMapper = new DynamoDBMapper(amazonDynamoDB);
 		Car car = dynamoDBMapper.load(Car.class, id);
 		CarResponse response = new CarResponse();

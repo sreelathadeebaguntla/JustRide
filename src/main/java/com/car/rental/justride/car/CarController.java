@@ -31,8 +31,8 @@ public class CarController {
 	}
 
 	@GetMapping("/cars/{id}")
-	public ResponseEntity<CarResponse> getCarById(@PathVariable Integer id) {
-		return ResponseEntity.ok(carService.getCarById(id.intValue()));
+	public ResponseEntity<CarResponse> getCarById(@PathVariable String id) {
+		return ResponseEntity.ok(carService.getCarById(id));
 	}
 
 	@PostMapping("/cars")
