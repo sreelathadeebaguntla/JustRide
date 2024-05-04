@@ -1,4 +1,4 @@
-package com.car.rental.justride.repository;
+package com.justride.config;
 
 import org.socialsignin.spring.data.dynamodb.repository.config.EnableDynamoDBRepositories;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,7 +15,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig;
 import com.amazonaws.services.dynamodbv2.model.CreateTableRequest;
 import com.amazonaws.services.dynamodbv2.model.ProvisionedThroughput;
 import com.amazonaws.services.dynamodbv2.model.ResourceInUseException;
-import com.car.rental.justride.modal.Car;
+import com.justride.model.Car;
 
 @Configuration
 @EnableDynamoDBRepositories(basePackages = "com.car.rental.justride.repository")

@@ -1,4 +1,4 @@
-package com.car.rental.justride.car;
+package com.justride.model;
 
 //@DynamoDBTypeConverted(converter = BodyTypeConverter.class)
 public enum BodyType {

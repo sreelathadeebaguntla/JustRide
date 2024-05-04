@@ -1,4 +1,4 @@
-package com.car.rental.justride.car;
+package com.justride.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
