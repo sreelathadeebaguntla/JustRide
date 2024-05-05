@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.validation.ValidationAutoConfigura
 
 @SpringBootApplication(exclude = { DataSourceAutoConfiguration.class, ValidationAutoConfiguration.class })
 public class JustrideApplication {
-
+		
 	public static void main(String[] args) {
 		SpringApplication.run(JustrideApplication.class, args);
 	}

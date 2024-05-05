@@ -2,6 +2,8 @@ package com.justride.controller;
 
 import java.net.URI;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,14 +22,18 @@ import com.justride.service.CarService;
 
 @RestController
 @RequestMapping("/justride")
+//@Slf4j
 public class CarController {
+	private static final Logger logger = LogManager.getLogger(CarController.class);
 
 	@Autowired
 	private CarService carService;
 
 	@GetMapping("/cars")
 	public ResponseEntity<CarsResponse> getAllCars() {
-		return ResponseEntity.ok(carService.getCars());
+		CarsResponse cars = carService.getCars();
+		logger.debug("The response for get cars :" + cars);
+		return ResponseEntity.ok(cars);
 	}
 
 	@GetMapping("/cars/{id}")
