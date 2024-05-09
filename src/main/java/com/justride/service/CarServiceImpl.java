@@ -2,6 +2,8 @@ package com.justride.service;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,11 +18,17 @@ import com.justride.model.response.CarsResponse;
 @Component
 public class CarServiceImpl implements CarService {
 
+	private static final Logger logger = LogManager.getLogger(CarServiceImpl.class);
+
 	@Autowired
 	private AmazonDynamoDB amazonDynamoDB;
 
 	@Override
 	public CarsResponse getCars() {
+		logger.info("This is info");
+		logger.debug("This is debug");
+		logger.warn("This is warn");
+		logger.error("This is error");
 		DynamoDBMapper dynamoDBMapper = new DynamoDBMapper(amazonDynamoDB);
 		List<Car> cars = dynamoDBMapper.scan(Car.class, new DynamoDBScanExpression());
 		CarsResponse response = new CarsResponse();
