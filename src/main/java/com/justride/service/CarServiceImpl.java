@@ -1,4 +1,4 @@
-package com.car.rental.justride.service;
+package com.justride.service;
 
 import java.util.List;
 
@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
-import com.car.rental.justride.modal.Car;
-import com.car.rental.justride.modal.CarCreatedResponse;
-import com.car.rental.justride.modal.CarResponse;
-import com.car.rental.justride.modal.CarsResponse;
+import com.justride.model.Car;
+import com.justride.model.response.CarPostResponse;
+import com.justride.model.response.CarResponse;
+import com.justride.model.response.CarsResponse;
 
 @Component
 public class CarServiceImpl implements CarService {
@@ -38,10 +38,10 @@ public class CarServiceImpl implements CarService {
 	}
 
 	@Override
-	public CarCreatedResponse addCar(Car car) {
+	public CarPostResponse addCar(Car car) {
 		DynamoDBMapper dynamoDBMapper = new DynamoDBMapper(amazonDynamoDB);
 		dynamoDBMapper.save(car);
-		CarCreatedResponse response = new CarCreatedResponse();
+		CarPostResponse response = new CarPostResponse();
 		response.setCreatedCar(car);
 		return response;
 

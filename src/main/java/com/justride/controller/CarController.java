@@ -1,4 +1,4 @@
-package com.car.rental.justride.car;
+package com.justride.controller;
 
 import java.net.URI;
 
@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.car.rental.justride.modal.Car;
-import com.car.rental.justride.modal.CarCreatedResponse;
-import com.car.rental.justride.modal.CarResponse;
-import com.car.rental.justride.modal.CarsResponse;
-import com.car.rental.justride.service.CarService;
+import com.justride.model.Car;
+import com.justride.model.response.CarPostResponse;
+import com.justride.model.response.CarResponse;
+import com.justride.model.response.CarsResponse;
+import com.justride.service.CarService;
 
 @RestController
 @RequestMapping("/justride")
@@ -36,8 +36,8 @@ public class CarController {
 	}
 
 	@PostMapping("/cars")
-	public ResponseEntity<CarCreatedResponse> addCar(@RequestBody Car car) {
-		CarCreatedResponse carReponse = carService.addCar(car);
+	public ResponseEntity<CarPostResponse> addCar(@RequestBody Car car) {
+		CarPostResponse carReponse = carService.addCar(car);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(carReponse.getCreatedCar().getId()).toUri();
 		return ResponseEntity.created(location).build();

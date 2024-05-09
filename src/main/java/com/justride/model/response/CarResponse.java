@@ -1,4 +1,6 @@
-package com.car.rental.justride.modal;
+package com.justride.model.response;
+
+import com.justride.model.Car;
 
 public class CarResponse {
 
