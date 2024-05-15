@@ -16,4 +16,10 @@ public interface CarService {
 
 	public CarPostResponse addCar(Car car);
 
+	public String updateCar(String id,Car car);
+
+	public String deleteCarById(String id);
+
+	public String deleteAllCars();
+
 }
