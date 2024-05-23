@@ -2,14 +2,11 @@ package com.justride.controller;
 
 import java.net.URI;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.justride.model.Car;
@@ -22,12 +19,16 @@ import com.justride.service.CarService;
 @RequestMapping("/justride")
 public class CarController {
 
+	private static final Logger logger = LogManager.getLogger(CarController.class);
+
 	@Autowired
 	private CarService carService;
 
 	@GetMapping("/cars")
 	public ResponseEntity<CarsResponse> getAllCars() {
-		return ResponseEntity.ok(carService.getCars());
+		CarsResponse cars = carService.getCars();
+		logger.info("This is info" + cars);
+		return ResponseEntity.ok(cars);
 	}
 
 	@GetMapping("/cars/{id}")
@@ -42,4 +43,22 @@ public class CarController {
 				.buildAndExpand(carReponse.getCreatedCar().getId()).toUri();
 		return ResponseEntity.created(location).build();
 	}
+
+	@PutMapping("/cars/{id}")
+	public ResponseEntity<String> updateCar(@PathVariable String id,@RequestBody Car car)
+	{
+		return ResponseEntity.ok(carService.updateCar(id,car));
+	}
+
+	@DeleteMapping("/cars/{id}")
+	public ResponseEntity<String> deleteCar(@PathVariable String id){
+		return ResponseEntity.ok(carService.deleteCarById(id));
+	}
+
+	@DeleteMapping("/cars")
+	public ResponseEntity<String> deleteAllCars(){
+		return ResponseEntity.ok(carService.deleteAllCars());
+	}
+
+
 }
