@@ -1,7 +1,7 @@
 package com.justride.model;
 
 //@DynamoDBTypeConverted(converter = BodyTypeConverter.class)
-public enum BodyType {
+public enum BodyTypeEnum {
 	SEDAN,
     SUV,
     HATCHBACK,

@@ -20,7 +20,7 @@ public class Car {
 	private String make;
 	@DynamoDBTypeConvertedEnum
 	@DynamoDBAttribute
-	private BodyType bodyType;
+	private BodyTypeEnum bodyType;
 	@DynamoDBAttribute
 	private String vin;
 	@DynamoDBAttribute
@@ -36,7 +36,7 @@ public class Car {
 
 	}
 
-	public Car(String name, String make, BodyType bodyType, String vin, String color, List<String> details,
+	public Car(String name, String make, BodyTypeEnum bodyType, String vin, String color, List<String> details,
 			List<String> features) {
 		super();
 		this.name = name;
@@ -72,11 +72,11 @@ public class Car {
 		this.make = make;
 	}
 
-	public BodyType getBodyType() {
+	public BodyTypeEnum getBodyType() {
 		return bodyType;
 	}
 
-	public void setBodyType(BodyType bodyType) {
+	public void setBodyType(BodyTypeEnum bodyType) {
 		this.bodyType = bodyType;
 	}
 
