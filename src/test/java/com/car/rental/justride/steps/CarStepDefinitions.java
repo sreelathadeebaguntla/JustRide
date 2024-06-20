@@ -10,7 +10,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import com.justride.model.BodyType;
+import com.justride.model.BodyTypeEnum;
 import com.justride.model.Car;
 
 import io.cucumber.java.en.Then;
@@ -30,7 +30,7 @@ public class CarStepDefinitions extends SpringIntegrationTest {
 	}
 
 	private Car getRequestBodyForCreatingCar() {
-		return new Car("Grand Cherokee", "Jeep", BodyType.SUV, getRandomVINNumber(), "Red", getCarDetails(),
+		return new Car("Grand Cherokee", "Jeep", BodyTypeEnum.SUV, getRandomVINNumber(), "Red", getCarDetails(),
 				getCarFeatures());
 	}
 
