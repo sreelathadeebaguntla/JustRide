@@ -6,7 +6,7 @@ Step 2: Start the DynamoDB database with following command pointing to dynamodb.
 
       java -D"java.library.path=./DynamoDBLocal_lib" -jar DynamoDBLocal.jar
 
-- For aditional info, refer the steps listed at https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html
+- For additional info, refer the steps listed at https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html
 
 -This AWS DynamoDB will be at the port 8000. To check the connection to the 8000 port use below command from powershell
       Test-NetConnection -ComputerName localhost -Port 8000
