@@ -5,7 +5,7 @@ Step 1: Download AWS DynamoDB to your local system.
 Step 2: Start the DynamoDB database with following command pointing to dynamodb.jar file just downloaded.
 
      Windows: java -D"java.library.path=./DynamoDBLocal_lib" -jar DynamoDBLocal.jar
-      Mac: java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb
+     Mac: java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb
 
 - For additional info, refer the steps listed at https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html
 
