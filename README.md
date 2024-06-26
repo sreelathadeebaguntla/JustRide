@@ -9,16 +9,16 @@ Step 2: Start the DynamoDB database with following command pointing to dynamodb.
 
 - For additional info, refer the steps listed at https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html
 
--This AWS DynamoDB will be at the port 8000. To check the connection to the 8000 port use below command from powershell
+-This AWS DynamoDB will be at the port 8000. To check the connection to the 8000 port use below command from powershell <br />
       Test-NetConnection -ComputerName localhost -Port 8000
 
--To list the DynamoDB tables, use the below command from powershell(you should have AWS CLI)
+-To list the DynamoDB tables, use the below command from powershell(you should have AWS CLI) <br />
       aws dynamodb list-tables --endpoint-url http://localhost:8000
 
--To configure aws DynamoDB, use the below commandfrom powershell(you should have AWS CLI)
+-To configure aws DynamoDB, use the below commandfrom powershell(you should have AWS CLI) <br />
       aws configure
 
--Check AWS KeyID, AWS Access Key. More details are given in https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html
+-Check AWS KeyID, AWS Access Key. More details at: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html
 
--Quick guide to integerate DynamoDB to Springboot application is given in https://www.baeldung.com/spring-data-dynamodb
+-Quick guide to integerate DynamoDB to Springboot application: https://www.baeldung.com/spring-data-dynamodb
       
