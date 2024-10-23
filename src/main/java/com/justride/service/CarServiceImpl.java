@@ -1,5 +1,6 @@
 package com.justride.service;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +23,8 @@ import com.justride.model.response.CarPostResponse;
 import com.justride.model.response.CarResponse;
 import com.justride.model.response.CarsResponse;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+
 @Component
 public class CarServiceImpl implements CarService {
 
@@ -31,6 +34,7 @@ public class CarServiceImpl implements CarService {
 	private AmazonDynamoDB amazonDynamoDB;
 
 	@Override
+	@CircuitBreaker(name = "carService", fallbackMethod = "fallbackGetCars")
 	public CarsResponse getCars() {
 		try {
 			logger.info("Fetching all cars");
@@ -44,7 +48,16 @@ public class CarServiceImpl implements CarService {
 			throw new CarServiceException("Unable to fetch cars");
 		}
 	}
+	
+	//Fallback method
+	public CarsResponse fallbackGetCars(Throwable t) {
+	    logger.error("Fallback method triggered due to: {}", t.getMessage());
 
+	    CarsResponse fallbackResponse = new CarsResponse();
+	    fallbackResponse.setCarList(Collections.emptyList()); // Returning an empty list
+	    return fallbackResponse;
+	}
+	
 	@Override
 	public CarResponse getCarById(String id) {
 		try {
