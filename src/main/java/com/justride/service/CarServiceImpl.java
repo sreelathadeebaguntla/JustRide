@@ -55,6 +55,7 @@ public class CarServiceImpl implements CarService {
 
 	    CarsResponse fallbackResponse = new CarsResponse();
 	    fallbackResponse.setCarList(Collections.emptyList()); // Returning an empty list
+	    fallbackResponse.setFallbackFlag(true);
 	    return fallbackResponse;
 	}
 	
