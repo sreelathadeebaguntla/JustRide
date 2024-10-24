@@ -7,6 +7,8 @@ import com.justride.model.Car;
 public class CarsResponse {
 
 	private List<Car> carList;
+	
+	private boolean fallbackFlag = false;
 
 	public CarsResponse() {
 
@@ -19,5 +21,15 @@ public class CarsResponse {
 	public void setCarList(List<Car> carList) {
 		this.carList = carList;
 	}
+
+	public boolean isFallbackFlag() {
+		return fallbackFlag;
+	}
+
+	public void setFallbackFlag(boolean fallbackFlag) {
+		this.fallbackFlag = fallbackFlag;
+	}
+	
+	
 
 }

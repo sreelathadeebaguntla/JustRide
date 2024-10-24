@@ -1,10 +1,12 @@
 package com.justride.controller;
 
 import java.net.URI;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,11 +36,17 @@ public class CarController {
 	private CarService carService;
 
 	@GetMapping("/cars")
-	public ResponseEntity<CarsResponse> getAllCars() {
+	public ResponseEntity<List<Car>> getAllCars() {
 		try {
 			CarsResponse cars = carService.getCars();
-			logger.info("Fetched all cars: " + cars);
-			return ResponseEntity.ok(cars);
+			if (!cars.isFallbackFlag()) {
+				logger.info("Fetched all cars: " + cars);
+				return new ResponseEntity<>(cars.getCarList(), HttpStatus.OK);
+			}else {
+				logger.error("Unable to fetch Cars, Fallback Method Executed");
+				return new ResponseEntity<>(cars.getCarList(), HttpStatus.SERVICE_UNAVAILABLE);
+			}
+			
 		} catch (Exception e) {
 			logger.error("Error fetching cars", e);
 			throw new CarServiceException("Unable to fetch cars");
